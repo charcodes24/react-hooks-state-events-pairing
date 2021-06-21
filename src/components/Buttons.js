@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Comments from "./Comments";
 
-function Buttons({ video, addThumbsUp, addThumbsDown, thumbsup, thumbsdown, hide, setHide}) {
+function Buttons({ video, addThumbsUp, addThumbsDown, thumbsup, thumbsdown }) {
     const {comments} = video;
+    const [hide, setHide] = useState(false);
 
     function toggleComments() {
-        
+        if (hide) {
+            setHide(false)
+        } else {
+            setHide(true)
+        }
     }
 
     
@@ -16,10 +21,9 @@ function Buttons({ video, addThumbsUp, addThumbsDown, thumbsup, thumbsdown, hide
             <button onClick={() => addThumbsDown()}>{thumbsdown}👎</button>
             <br/>
             <br/>
-            <button onClick={() => toggleComments()}>{hide ? "Hide Comments" : "Show Comments"}</button>
+            <button onClick={() => toggleComments()}>{hide ? "Show Comments" : "Hide Comments"}</button>
             <div className="comments-container">
-                <h2>{comments.length} Comments</h2>
-                <Comments comments={comments} />
+                <Comments comments={comments} hide={hide} />
             </div>
         </div>
     )

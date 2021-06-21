@@ -1,6 +1,6 @@
 import React from "react";
 
-function Comments({ comments }) {
+function Comments({ comments, hide }) {
     console.log(comments);
 
     function renderComments() {
@@ -15,7 +15,8 @@ function Comments({ comments }) {
     }
 
     return (
-        <div className="comments-container">
+        <div style={hide ? {'display': 'none'} : {'display': 'block'} }className="comments-container">
+        <h2>{comments.length} Comments</h2>
         {renderComments()}
         </div>
     )

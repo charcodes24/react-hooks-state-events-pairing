@@ -7,7 +7,6 @@ function App() {
   const {upvotes, downvotes} = video;
   const [thumbsup, setThumbsUp] = useState(upvotes);
   const [thumbsdown, setThumbsDown] = useState(downvotes);
-  const [hide, setHide] = useState(true);
 
   function addThumbsUp() {
     let updatedLikes = thumbsup + 1;
@@ -28,8 +27,6 @@ function App() {
         addThumbsDown={addThumbsDown} 
         thumbsup={thumbsup} 
         thumbsdown={thumbsdown}
-        hide={hide}
-        setHide={setHide}
       />
     </div>
   );
