@@ -1,17 +1,35 @@
+import React, { useState } from "react";
+import Header from "./Header";
+import Buttons from "./Buttons";
 import video from "../data/video.js";
 
 function App() {
-  console.log("Here's your data:", video);
+  const {upvotes, downvotes} = video;
+  const [thumbsup, setThumbsUp] = useState(upvotes);
+  const [thumbsdown, setThumbsDown] = useState(downvotes);
+  const [hide, setHide] = useState(true);
+
+  function addThumbsUp() {
+    let updatedLikes = thumbsup + 1;
+    return setThumbsUp(updatedLikes);
+  }
+
+  function addThumbsDown() {
+    let updatedLikes = thumbsdown + 1;
+    return setThumbsDown(updatedLikes);
+  }
 
   return (
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameborder="0"
-        allowfullscreen
-        title="Thinking in React"
+      <Header video={video} />
+      <Buttons 
+        video={video} 
+        addThumbsUp={addThumbsUp} 
+        addThumbsDown={addThumbsDown} 
+        thumbsup={thumbsup} 
+        thumbsdown={thumbsdown}
+        hide={hide}
+        setHide={setHide}
       />
     </div>
   );
